@@ -6,7 +6,7 @@ namespace SongBook2.Repositories
 {
     public interface IUserRepository {
 
-        public bool Create(PostUser client);
+        public bool Create(UserDetail client);
     }
 
     public class UserRepository: IUserRepository
@@ -17,17 +17,16 @@ namespace SongBook2.Repositories
             db = _db;
         }
 
-        public bool Create(PostUser client)
+        public bool Create(UserDetail client)
         {
             var client_db = new User()
             {
                 Name = client.Name,
-                Email = client.Email,
-                Id = Guid.NewGuid()                
+                Email = client.Email       
 
             };
 
-            db.User.Add(client_db);
+            //db.User.Add(client_db);
             db.SaveChanges();
 
             return true;

@@ -63,7 +63,7 @@ namespace SongBook2.Controllers
             return Ok(new {  Name = User.Identity.Name, Logado = User.Identity.IsAuthenticated});
         }
 
-        [Route("Login")]
+        [Route("Logout")]
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
@@ -72,7 +72,7 @@ namespace SongBook2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] PostUser client)
+        public IActionResult Post([FromBody] UserDetail client)
         {
             if (repos.Create(client))
             {
@@ -96,7 +96,4 @@ namespace SongBook2.Controllers
 
     }
 
-    internal class AuthorizedAttribute : Attribute
-    {
-    }
 }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -37,10 +38,14 @@ namespace SongBook22
             services.AddDbContext<_DbContext>(x =>
            x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<_DbContext>();
+
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie( x => {
+                    x.SlidingExpiration = true;
+                    x.ExpireTimeSpan = new TimeSpan(0, 1, 0);
                     x.LoginPath = "/login";
                     //x.Events = new CookieAuthenticationEvents()
                     //{

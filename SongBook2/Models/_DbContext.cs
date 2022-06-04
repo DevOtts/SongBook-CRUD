@@ -1,8 +1,9 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace SongBook2.Models
 {
-    public class _DbContext : DbContext
+    public class _DbContext : IdentityDbContext<User>
     {
         public _DbContext(DbContextOptions<_DbContext> options) : base(options)
         {
@@ -28,7 +29,7 @@ namespace SongBook2.Models
                 .HasForeignKey(sc => sc.TagId);
         }
 
-        public DbSet<User> User { get; set; }
+        //public DbSet<User> User { get; set; }
         public DbSet<Tag> Tag { get; set; }
         public DbSet<Article> Article { get; set; }
         public DbSet<ArticleTag> ArticleTag { get; set; }

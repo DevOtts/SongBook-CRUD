@@ -1,11 +1,12 @@
 ﻿using System;
 namespace SongBook2.Models.Entities.Client
 {
-    public class PostUser
+    public class UserDetail
     {
         public string Name { get; set; }
         public string Email { get; set; }
-        public PostUser()
+        public string Password { get; set; }
+        public UserDetail()
         {
         }
     }
